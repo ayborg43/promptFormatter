@@ -1,0 +1,5 @@
+{
+  "name": "Prompt Architect",
+  "description": "An AI-powered assistant that helps you craft the perfect prompts for LLMs by guiding you through a structured creation process.",
+  "requestFramePermissions": []
+}
