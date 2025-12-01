@@ -9,6 +9,8 @@ export interface PromptContext {
   constraints: string;
   format: string;
   examples: string;
+  tone: string;
+  useChainOfThought: boolean;
 }
 
 export enum AppStep {
@@ -22,7 +24,7 @@ export interface AppState {
   step: AppStep;
   idea: string;
   personas: Persona[];
-  selectedPersona: Persona | null;
+  selectedPersonas: Persona[];
   context: PromptContext;
   finalPrompt: string;
   isGenerating: boolean;

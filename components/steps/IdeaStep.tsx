@@ -14,16 +14,16 @@ export const IdeaStep: React.FC<IdeaStepProps> = ({ value, onChange, onNext }) =
   return (
     <div className="animate-fade-in space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-white">What do you want to achieve?</h2>
-        <p className="text-slate-400">Describe your task, goal, or problem in plain English.</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">What do you want to achieve?</h2>
+        <p className="text-slate-500 dark:text-slate-400 transition-colors">Describe your task, goal, or problem in plain English.</p>
       </div>
 
-      <div className="bg-slate-800/50 p-1 rounded-xl ring-1 ring-slate-700 focus-within:ring-blue-500 transition-all shadow-lg">
+      <div className="bg-white dark:bg-slate-800/50 p-1 rounded-xl ring-1 ring-slate-200 dark:ring-slate-700 focus-within:ring-blue-500 transition-all shadow-lg">
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="E.g., I want to write a Python script to scrape a website, or I need a marketing email for a new coffee brand..."
-          className="w-full h-48 bg-transparent text-white p-4 outline-none resize-none text-lg placeholder-slate-500 rounded-lg"
+          className="w-full h-48 bg-transparent text-slate-900 dark:text-white p-4 outline-none resize-none text-lg placeholder-slate-400 dark:placeholder-slate-500 rounded-lg transition-colors"
           autoFocus
         />
       </div>
@@ -34,7 +34,7 @@ export const IdeaStep: React.FC<IdeaStepProps> = ({ value, onChange, onNext }) =
           disabled={isNextDisabled}
           className={`px-8 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 ${
             isNextDisabled
-              ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+              ? 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
               : 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg hover:shadow-blue-500/25 active:scale-95'
           }`}
         >

@@ -45,26 +45,34 @@ export const generatePersonas = async (idea: string): Promise<Persona[]> => {
 
 export const craftFinalPrompt = async (
   idea: string,
-  persona: Persona,
+  personas: Persona[],
   context: PromptContext
 ): Promise<string> => {
   try {
+    const personasDescription = personas
+      .map((p, index) => `${index + 1}. ${p.role}: ${p.description}`)
+      .join('\n');
+
     const promptInputs = `
     TASK: ${idea}
-    SELECTED PERSONA: ${persona.role} (${persona.description})
+    SELECTED PERSONA(S):
+    ${personasDescription}
+    
     AUDIENCE: ${context.audience || "Not specified"}
+    TONE: ${context.tone || "Professional and Objective"}
     CONSTRAINTS: ${context.constraints || "None"}
     DESIRED FORMAT: ${context.format || "Markdown"}
     EXAMPLES/DATA: ${context.examples || "None provided"}
+    INCLUDE CHAIN OF THOUGHT: ${context.useChainOfThought ? "YES (Critical)" : "NO (Optional)"}
     `;
 
     const systemInstruction = `You are an expert Prompt Engineer. Your goal is to write the *perfect* prompt for another Large Language Model (LLM) based on the user's requirements. 
     Construct a comprehensive, structured system prompt that includes:
-    1. Role definition (using the selected persona).
+    1. Role definition (synthesizing the selected persona(s) into a cohesive expert identity).
     2. Clear task objective.
-    3. Step-by-step instructions (chain of thought).
-    4. Style and Tone guidelines.
-    5. Formatting rules.
+    3. Context and Tone guidelines (${context.tone}).
+    4. Step-by-step instructions${context.useChainOfThought ? " (You MUST include explicit instructions for the model to think step-by-step or use a Chain of Thought approach before answering)" : " (Chain of thought is optional based on complexity)"}.
+    5. Formatting rules (${context.format}).
     
     The output should be ONLY the optimized prompt itself, ready to be copied and pasted by the user. Do not add conversational filler like "Here is your prompt".`;
 
