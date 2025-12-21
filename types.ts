@@ -4,13 +4,18 @@ export interface Persona {
   reasoning: string;
 }
 
+export interface ExamplePair {
+  input: string;
+  output: string;
+}
+
 export interface PromptContext {
-  audience: string;
   constraints: string;
-  format: string;
-  examples: string;
-  tone: string;
+  negativeConstraints: string;
+  examples: ExamplePair[];
   useChainOfThought: boolean;
+  useSelfCorrection: boolean;
+  verbosity: 'concise' | 'detailed' | 'default';
 }
 
 export enum AppStep {

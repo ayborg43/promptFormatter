@@ -50,7 +50,7 @@ export const ResultStep: React.FC<ResultStepProps> = ({ idea, personas, context,
         </div>
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">Crafting your prompt...</h2>
-          <p className="text-slate-500 dark:text-slate-400 transition-colors">Integrating context, persona, and optimization techniques.</p>
+          <p className="text-slate-500 dark:text-slate-400 transition-colors">Integrating context, persona, and structural delimiters.</p>
         </div>
       </div>
     );
@@ -59,16 +59,32 @@ export const ResultStep: React.FC<ResultStepProps> = ({ idea, personas, context,
   return (
     <div className="animate-fade-in space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 transition-colors">
-          Your Optimized Prompt
-        </h2>
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 transition-colors">
+            Your Optimized Prompt
+          </h2>
+        </div>
         <p className="text-slate-500 dark:text-slate-400 transition-colors">Copy this and paste it into ChatGPT, Claude, or Gemini.</p>
+        
+        <div className="flex flex-wrap justify-center gap-2 mt-4">
+          <span className="text-[10px] bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-blue-200/50 dark:border-blue-800/50">
+            XML-Tagging Applied
+          </span>
+          <span className="text-[10px] bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-indigo-200/50 dark:border-indigo-800/50">
+            Structural Delimiters
+          </span>
+          {context.useSelfCorrection && (
+            <span className="text-[10px] bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full font-bold uppercase tracking-widest border border-purple-200/50 dark:border-purple-800/50">
+              Meta-Criticism Active
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="relative group">
         <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
         <div className="relative bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 p-6 shadow-2xl transition-colors">
-          <pre className="whitespace-pre-wrap font-mono text-sm text-slate-800 dark:text-slate-300 leading-relaxed overflow-x-auto max-h-[60vh] scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent pr-2 transition-colors">
+          <pre className="whitespace-pre-wrap font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-300 leading-relaxed overflow-x-auto max-h-[60vh] scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent pr-2 transition-colors">
             {prompt}
           </pre>
           
